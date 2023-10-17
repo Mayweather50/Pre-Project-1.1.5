@@ -2,9 +2,11 @@ package jm.task.core.jdbc;
 
 import com.mysql.cj.jdbc.result.ResultSetImpl;
 import jm.task.core.jdbc.dao.UserDao;
+import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
+import org.hibernate.SessionFactory;
 
 import java.sql.*;
 
@@ -15,7 +17,10 @@ public class Main {
 
         Util.getConnection();
 
-        UserDao userDao = new UserDaoJDBCImpl();
+        Util.getSessionFactory();
+
+
+        UserDao userDao = new UserDaoHibernateImpl();
 
         userDao.createUsersTable();
 
